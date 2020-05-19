@@ -1,0 +1,33 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+             mc:Ignorable="d"
+             BarBackgroundColor="#1C86EE"
+             android:TabbedPage.ToolbarPlacement="Bottom"
+             android:TabbedPage.BarItemColor="LightGray"
+             android:TabbedPage.BarSelectedItemColor="White"
+             x:Class="ChatApp.Pages.MainPage">
+  <!--Pages can be added as references or inline-->
+    <ContentPage Title="Chat" IconImageSource="ChatIcon.png">
+        <Label Text="Chat Page" HorizontalOptions="Center" VerticalOptions="Center"/>
+    </ContentPage>
+    <ContentPage Title="Profile" IconImageSource="PersonIcon.png" Padding="10">
+        <StackLayout>
+            <Frame Margin="20" BorderColor="#1C86EE" BackgroundColor="Purple" CornerRadius="110" HeightRequest="200" WidthRequest="200" IsClippedToBounds="True" HorizontalOptions="Center" VerticalOptions="Center">
+                <Image Source="PersonIcon.png" HeightRequest="100" WidthRequest="100" />
+            </Frame>
+
+            <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
+                <Image Source="EditIcon.png"/>
+                <Label x:Name="lbl_Name" Text="Name" FontSize="30" FontAttributes="Bold"/>
+            </StackLayout>
+
+            <Label x:Name="lbl_Email" Text="Email" FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0, 5, 0, 5"/>
+
+            <Button Text="Sign Out" Clicked="SignOut" BackgroundColor="LightGray" CornerRadius="8" HorizontalOptions="FillAndExpand"/>
+        </StackLayout>
+    </ContentPage>
+</TabbedPage>
