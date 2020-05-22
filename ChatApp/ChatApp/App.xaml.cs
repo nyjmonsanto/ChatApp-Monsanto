@@ -7,6 +7,11 @@ namespace ChatApp
 {
     public partial class App : Application
     {
+        public static float screenWidth { get; set; }
+        public static float screenHeight { get; set; }
+        public static float appScale { get; set; }
+
+
         DataClass dataClass = DataClass.GetInstance;
         public App()
         {
