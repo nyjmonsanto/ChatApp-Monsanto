@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             x:Class="ChatApp.Pages.ResetPassPage">
+    <ContentPage.Content>
+        <Grid>
+            <StackLayout Padding="10">
+                <Frame HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                    <Image Source="LogoIcon.png"/>
+                </Frame>
+
+                <Label Text="Reset Password" TextColor="DimGray" FontSize="18" Margin="0, 5, 0, 5"/>
+
+                <Frame x:Name="Frame1" CornerRadius="8" BorderColor="Black" Padding="0">
+                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Input Email" PlaceholderColor="LightGray" Keyboard="Email" ReturnType="Next" Margin="5, 0, 5, 0"/>
+                </Frame>
+
+                <Button Text="Send Email" Clicked="SendEmailAction" BackgroundColor="LightGreen" CornerRadius="8" HorizontalOptions="FillAndExpand" Margin="0, 10, 0, 5"/>
+
+                <Label x:Name="lbl_Back" Text="Back" TextColor="DimGray" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="0, 0, 0, 50">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="LoginPageNavigate"/>
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </StackLayout>
+
+            <StackLayout x:Name="bg" IsVisible="False" BackgroundColor="Black" Opacity="0.7" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
+                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+            </StackLayout>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

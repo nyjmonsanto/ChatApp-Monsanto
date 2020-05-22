@@ -22,7 +22,11 @@
                     </StackLayout>
                 </Frame>
 
-                <Label x:Name="lbl_ResetPass" Text="Forgot Password" TextColor="DimGray" FontSize="15" HorizontalTextAlignment="End" Margin="0, 5, 0, 5"/>
+                <Label x:Name="lbl_ResetPass" Text="Forgot Password" TextColor="DimGray" FontSize="15" HorizontalTextAlignment="End" Margin="0, 5, 0, 5">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="ResetPassPageNavigate"/>
+                    </Label.GestureRecognizers>
+                </Label>
 
                 <Button Text="Sign In" Clicked="SignInProcess" BackgroundColor="LightGreen" CornerRadius="8" HorizontalOptions="FillAndExpand"/>
                 <Button Text="Create an Account" Clicked="SignUpNavigate" BackgroundColor="LightGray" CornerRadius="8" HorizontalOptions="FillAndExpand"/>

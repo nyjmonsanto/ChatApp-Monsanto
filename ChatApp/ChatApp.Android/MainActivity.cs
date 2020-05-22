@@ -7,6 +7,8 @@ using Android.Views;
 using Android.Widget;
 using Android.OS;
 
+using Firebase;
+
 namespace ChatApp.Droid
 {
     [Activity(Label = "ChatApp", Icon = "@mipmap/icon", Theme = "@style/MainTheme", MainLauncher = true, ConfigurationChanges = ConfigChanges.ScreenSize | ConfigChanges.Orientation)]
@@ -16,6 +18,8 @@ namespace ChatApp.Droid
         {
             TabLayoutResource = Resource.Layout.Tabbar;
             ToolbarResource = Resource.Layout.Toolbar;
+
+            FirebaseApp.InitializeApp(this);
 
             base.OnCreate(savedInstanceState);
 

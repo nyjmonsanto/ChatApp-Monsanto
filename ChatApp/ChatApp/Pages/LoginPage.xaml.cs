@@ -1,4 +1,6 @@
-﻿using System;
+﻿using ChatApp.DependencyServices;
+using ChatApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +24,11 @@ namespace ChatApp.Pages
         private async void SignUpNavigate(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SignUpPage());
+        }
+
+        private async void ResetPassPageNavigate(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new ResetPassPage());
         }
 
         //Loading Screen
@@ -64,7 +71,7 @@ namespace ChatApp.Pages
             App.Current.MainPage = new MainPage();
         }
 
-        public void SignInProcess(object sender, EventArgs e)
+        public async void SignInProcess(object sender, EventArgs e)
         {
             if(string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text))
             {
@@ -78,11 +85,37 @@ namespace ChatApp.Pages
                     Frame2.BorderColor = Color.Red;
                 }
 
-                DisplayAlert("Error", "Missing field/s", "Okay");
+                bool retryBool = await DisplayAlert("Error", "Missing field/s. Retry?", "Yes", "No");
+                if (retryBool)
+                {
+                    Email.Text = string.Empty;
+                    Password.Text = string.Empty;
+                    Email.Focus();
+                }
             }
             else
             {
-                SignInAction(sender, e);
+                ToggleIndicator(true);
+
+                FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+                res = await DependencyService.Get<iFirebaseAuth>().LoginWithEmailPassword(Email.Text, Password.Text);
+
+                if(res.Status == true)
+                {
+                    Application.Current.MainPage = new MainPage();
+                }
+                else
+                {
+                    bool retryBool = await DisplayAlert("Error", res.Response + " Retry?", "Yes", "No");
+                    if (retryBool)
+                    {
+                        Email.Text = string.Empty;
+                        Password.Text = string.Empty;
+                        Email.Focus();
+                    }
+                }
+
+                ToggleIndicator(false);
             }
         }
     }

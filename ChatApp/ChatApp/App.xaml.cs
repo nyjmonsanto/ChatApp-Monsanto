@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ChatApp.Helpers;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -6,13 +7,12 @@ namespace ChatApp
 {
     public partial class App : Application
     {
+        DataClass dataClass = DataClass.GetInstance;
         public App()
         {
             InitializeComponent();
 
-            var isLoggedIn = Properties.ContainsKey("isLoggedIn") ? (bool)Properties["isLoggedIn"] : false;
-
-            if (isLoggedIn)
+            if (dataClass.isSignedIn)
             {
                 MainPage = new Pages.MainPage();
             }

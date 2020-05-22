@@ -22,10 +22,10 @@
 
             <StackLayout Orientation="Horizontal" HorizontalOptions="Center">
                 <Image Source="EditIcon.png"/>
-                <Label x:Name="lbl_Name" Text="Name" FontSize="30" FontAttributes="Bold"/>
+                <Label x:Name="lbl_Name" Text=" " FontSize="30" FontAttributes="Bold"/>
             </StackLayout>
 
-            <Label x:Name="lbl_Email" Text="Email" FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0, 5, 0, 5"/>
+            <Label x:Name="lbl_Email" Text=" " FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0, 5, 0, 5"/>
 
             <Button Text="Sign Out" Clicked="SignOut" BackgroundColor="LightGray" CornerRadius="8" HorizontalOptions="FillAndExpand"/>
         </StackLayout>

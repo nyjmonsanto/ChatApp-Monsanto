@@ -1,4 +1,8 @@
-﻿using System;
+﻿using ChatApp.DependencyServices;
+using ChatApp.Helpers;
+using ChatApp.Model;
+using Plugin.CloudFirestore;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +16,7 @@ namespace ChatApp.Pages
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class SignUpPage : ContentPage
     {
+        DataClass dataClass = DataClass.GetInstance;
         public SignUpPage()
         {
             InitializeComponent();
@@ -77,7 +82,7 @@ namespace ChatApp.Pages
             await Navigation.PopAsync();
         }
 
-        public void SignUpProcess(object sender, EventArgs e)
+        public async void SignUpProcess(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(Name.Text) || string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text) || string.IsNullOrEmpty(ConfirmPassword.Text))
             {
@@ -101,15 +106,44 @@ namespace ChatApp.Pages
                     Frame4.BorderColor = Color.Red;
                 }
 
-                DisplayAlert("Error", "Missing field/s", "Okay");
+                await DisplayAlert("Error", "Missing field/s", "Okay");
             }
             else if (!Password.Text.Equals(ConfirmPassword.Text))
             {
-                DisplayAlert("Error", "Passwords don't match", "Okay");
+                await DisplayAlert("Error", "Passwords don't match", "Okay");
+                ConfirmPassword.Text = string.Empty;
+                ConfirmPassword.Focus();
             }
             else
             {
-                SignUpAction(sender, e);
+                ToggleIndicator(true);
+
+                FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
+                res = await DependencyService.Get<iFirebaseAuth>().SignUpWithEmailPassword(Name.Text, Email.Text, Password.Text);
+
+                if (res.Status == true)
+                {
+                    try
+                    {
+                        await CrossCloudFirestore.Current
+                                                 .Instance
+                                                 .GetCollection("users")
+                                                 .GetDocument(dataClass.loggedInUser.uid)
+                                                 .SetDataAsync(dataClass.loggedInUser);
+                        await DisplayAlert("Success", res.Response, "Okay");
+                        await Navigation.PopAsync();
+                    }
+                    catch (Exception ex)
+                    {
+                        await DisplayAlert("Error", ex.Message, "Okay");
+                    }
+                }
+                else
+                {
+                    await DisplayAlert("Error", res.Response, "Okay");
+                }
+
+                ToggleIndicator(false);
             }
         }
     }
