@@ -106,11 +106,11 @@ namespace ChatApp.Pages
                     Frame4.BorderColor = Color.Red;
                 }
 
-                await DisplayAlert("Error", "Missing field/s", "Okay");
+                await DisplayAlert("Error", "Missing field/s.", "Okay");
             }
             else if (!Password.Text.Equals(ConfirmPassword.Text))
             {
-                await DisplayAlert("Error", "Passwords don't match", "Okay");
+                await DisplayAlert("Error", "Passwords don't match.", "Okay");
                 ConfirmPassword.Text = string.Empty;
                 ConfirmPassword.Focus();
             }
