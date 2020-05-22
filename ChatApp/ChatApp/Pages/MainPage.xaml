@@ -27,7 +27,7 @@
 
             <Label x:Name="lbl_Email" Text=" " FontSize="28" FontAttributes="Bold" HorizontalTextAlignment="Center" Margin="0, 5, 0, 5"/>
 
-            <Button Text="Sign Out" Clicked="SignOut" BackgroundColor="LightGray" CornerRadius="8" HorizontalOptions="FillAndExpand"/>
+            <Button Text="Sign Out" Clicked="SignOut" BackgroundColor="LightGray" Style="{StaticResource ButtonStyle}"/>
         </StackLayout>
     </ContentPage>
 </TabbedPage>

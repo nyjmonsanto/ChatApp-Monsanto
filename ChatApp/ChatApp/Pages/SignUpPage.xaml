@@ -12,27 +12,27 @@
                     <Image Source="LogoIcon.png"/>
                 </Frame>
 
-                <Frame x:Name="Frame1" CornerRadius="8" BorderColor="Black" Padding="0">
-                    <Entry x:Name="Name" Focused="ChangeColor" Placeholder="Username" PlaceholderColor="LightGray" Keyboard="Chat" ReturnType="Next" Margin="5, 0, 5, 0"/>
+                <Frame x:Name="Frame1" Style="{StaticResource FrameStyle}">
+                    <Entry x:Name="Name" Focused="ChangeColor" Placeholder="Username" Style="{StaticResource EntryStyle}"/>
                 </Frame>
-                <Frame x:Name="Frame2" CornerRadius="8" BorderColor="Black" Padding="0">
-                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Email" PlaceholderColor="LightGray" Keyboard="Email" ReturnType="Next" Margin="5, 0, 5, 0"/>
+                <Frame x:Name="Frame2" Style="{StaticResource FrameStyle}">
+                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
                 </Frame>
-                <Frame x:Name="Frame3" CornerRadius="8" BorderColor="Black" Padding="0">
+                <Frame x:Name="Frame3" Style="{StaticResource FrameStyle}">
                     <StackLayout Orientation="Horizontal">
-                        <Entry x:Name="Password" Focused="ChangeColor" Placeholder="Password" PlaceholderColor="LightGray" ReturnType="Next" IsPassword="True" HorizontalOptions="FillAndExpand" Margin="5, 0, 5, 0"/>
-                        <Button x:Name="btn_ShowHide1" Text="Show" Clicked="ShowHidePass" BackgroundColor="LightGray" FontSize="13" FontAttributes="Bold" HeightRequest="25" WidthRequest="70" CornerRadius="8" HorizontalOptions="End" Padding="0" Margin="0, 5, 15, 5"/>
+                        <Entry x:Name="Password" Focused="ChangeColor" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryStyle}"/>
+                        <Button x:Name="btn_ShowHide1" Clicked="ShowHidePass" Style="{StaticResource ShowHidePassStyle}"/>
                     </StackLayout>
                 </Frame>
-                <Frame x:Name="Frame4" CornerRadius="8" BorderColor="Black" Padding="0">
+                <Frame x:Name="Frame4" Style="{StaticResource FrameStyle}">
                     <StackLayout Orientation="Horizontal">
-                        <Entry x:Name="ConfirmPassword" Focused="ChangeColor" Placeholder="Confirm Password" PlaceholderColor="LightGray" IsPassword="True" HorizontalOptions="FillAndExpand" Margin="5, 0, 5, 0"/>
-                        <Button x:Name="btn_ShowHide2" Text="Show" Clicked="ShowHidePass" BackgroundColor="LightGray" FontSize="13" FontAttributes="Bold" HeightRequest="25" WidthRequest="70" CornerRadius="8" HorizontalOptions="End" Padding="0" Margin="0, 5, 15, 5"/>
+                        <Entry x:Name="ConfirmPassword" Focused="ChangeColor" Placeholder="Confirm Password" IsPassword="True" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryStyle}"/>
+                        <Button x:Name="btn_ShowHide2" Clicked="ShowHidePass" Style="{StaticResource ShowHidePassStyle}"/>
                     </StackLayout>
                 </Frame>
 
-                <Button Text="Sign Up" Clicked="SignUpProcess" BackgroundColor="LightGreen" CornerRadius="8" HorizontalOptions="FillAndExpand" Margin="0, 10, 0, 0"/>
-                <Button Text="Sign In to your account" Clicked="LoginPageNavigate" BackgroundColor="LightGray" CornerRadius="8" HorizontalOptions="FillAndExpand" Margin="0, 5, 0, 0"/>
+            <Button Text="Sign Up" Clicked="SignUpProcess" Style="{StaticResource ButtonStyle}"/>
+            <Button Text="Sign In to your account" Clicked="LoginPageNavigate" BackgroundColor="LightGray" Style="{StaticResource ButtonStyle}"/>
 
                 <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="11" Margin="0, 10, 0, 25">
                     <ImageButton Clicked="SignUpAction" Source="GoogleSignIn.png" WidthRequest="190"/>
@@ -40,8 +40,8 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout x:Name="bg" IsVisible="False" BackgroundColor="Black" Opacity="0.7" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+            <StackLayout x:Name="bg" IsVisible="False" Style="{StaticResource LoadingBGStyle}">
+                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" Style="{StaticResource LoadingIndcatorStyle}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

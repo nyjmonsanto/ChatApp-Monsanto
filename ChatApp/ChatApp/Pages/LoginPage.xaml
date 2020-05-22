@@ -12,24 +12,24 @@
                     <Image Source="LogoIcon.png"/>
                 </Frame>
 
-                <Frame x:Name="Frame1" CornerRadius="8" BorderColor="Black" Padding="0">
-                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Email" PlaceholderColor="LightGray" Keyboard="Email" ReturnType="Next" Margin="5, 0, 5, 0"/>
+                <Frame x:Name="Frame1" Style="{StaticResource FrameStyle}">
+                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
                 </Frame>
-                <Frame x:Name="Frame2" CornerRadius="8" BorderColor="Black" Padding="0">
+                <Frame x:Name="Frame2" Style="{StaticResource FrameStyle}">
                     <StackLayout Orientation="Horizontal">
-                        <Entry x:Name="Password" Focused="ChangeColor" Placeholder="Password" PlaceholderColor="LightGray" IsPassword="True" HorizontalOptions="FillAndExpand" Margin="5, 0, 5, 0"/>
-                        <Button x:Name="btn_ShowHide" Text="Show" Clicked="ShowHidePass" BackgroundColor="LightGray" FontSize="13" FontAttributes="Bold" HeightRequest="25" WidthRequest="70" CornerRadius="8" HorizontalOptions="End" Padding="0" Margin="0, 5, 15, 5"/>
+                        <Entry x:Name="Password" Focused="ChangeColor" Placeholder="Password" IsPassword="True" HorizontalOptions="FillAndExpand" Style="{StaticResource EntryStyle}"/>
+                        <Button x:Name="btn_ShowHide" Clicked="ShowHidePass" Style="{StaticResource ShowHidePassStyle}"/>
                     </StackLayout>
                 </Frame>
 
-                <Label x:Name="lbl_ResetPass" Text="Forgot Password" TextColor="DimGray" FontSize="15" HorizontalTextAlignment="End" Margin="0, 5, 0, 5">
+                <Label x:Name="lbl_ResetPass" Text="Forgot Password" TextColor="DimGray" FontSize="15" HorizontalTextAlignment="End" Margin="0, 10, 0, 0">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="ResetPassPageNavigate"/>
                     </Label.GestureRecognizers>
                 </Label>
 
-                <Button Text="Sign In" Clicked="SignInProcess" BackgroundColor="LightGreen" CornerRadius="8" HorizontalOptions="FillAndExpand"/>
-                <Button Text="Create an Account" Clicked="SignUpNavigate" BackgroundColor="LightGray" CornerRadius="8" HorizontalOptions="FillAndExpand"/>
+                <Button Text="Sign In" Clicked="SignInProcess" Style="{StaticResource ButtonStyle}"/>
+                <Button Text="Create an Account" Clicked="SignUpNavigate" BackgroundColor="LightGray" Style="{StaticResource ButtonStyle}"/>
 
                 <StackLayout Orientation="Horizontal" Margin="0, 5, 0, 5">
                     <BoxView BackgroundColor="Black" HeightRequest="1" HorizontalOptions="FillAndExpand" Margin="0, 10, 0, 10"/>
@@ -43,8 +43,8 @@
                 </StackLayout>
             </StackLayout>
 
-            <StackLayout x:Name="bg" IsVisible="False" BackgroundColor="Black" Opacity="0.7" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+            <StackLayout x:Name="bg" IsVisible="False" Style="{StaticResource LoadingBGStyle}">
+                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" Style="{StaticResource LoadingIndcatorStyle}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>

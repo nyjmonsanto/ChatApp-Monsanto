@@ -14,13 +14,13 @@
 
                 <Label Text="Reset Password" TextColor="DimGray" FontSize="18" Margin="0, 5, 0, 5"/>
 
-                <Frame x:Name="Frame1" CornerRadius="8" BorderColor="Black" Padding="0">
-                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Input Email" PlaceholderColor="LightGray" Keyboard="Email" ReturnType="Next" Margin="5, 0, 5, 0"/>
+                <Frame x:Name="Frame1" Style="{StaticResource FrameStyle}">
+                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Input Email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
                 </Frame>
 
-                <Button Text="Send Email" Clicked="SendEmailAction" BackgroundColor="LightGreen" CornerRadius="8" HorizontalOptions="FillAndExpand" Margin="0, 10, 0, 5"/>
+                <Button Text="Send Email" Clicked="SendEmailAction" Style="{StaticResource ButtonStyle}"/>
 
-                <Label x:Name="lbl_Back" Text="Back" TextColor="DimGray" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="0, 0, 0, 50">
+                <Label x:Name="lbl_Back" Text="Back" TextColor="DimGray" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 50">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LoginPageNavigate"/>
                     </Label.GestureRecognizers>
@@ -28,8 +28,8 @@
 
             </StackLayout>
 
-            <StackLayout x:Name="bg" IsVisible="False" BackgroundColor="Black" Opacity="0.7" HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" HorizontalOptions="Center" VerticalOptions="CenterAndExpand"/>
+            <StackLayout x:Name="bg" IsVisible="False" Style="{StaticResource LoadingBGStyle}">
+                <ActivityIndicator x:Name="actvty_indctr" IsEnabled="False" IsVisible="False" IsRunning="False" Style="{StaticResource LoadingIndcatorStyle}"/>
             </StackLayout>
         </Grid>
     </ContentPage.Content>
