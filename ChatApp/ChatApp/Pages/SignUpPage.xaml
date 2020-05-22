@@ -34,9 +34,9 @@
             <Button Text="Sign Up" Clicked="SignUpProcess" Style="{StaticResource ButtonStyle}"/>
             <Button Text="Sign In to your account" Clicked="LoginPageNavigate" BackgroundColor="LightGray" Style="{StaticResource ButtonStyle}"/>
 
-                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="11" Margin="0, 10, 0, 25">
-                    <ImageButton Clicked="SignUpAction" Source="GoogleSignIn.png" WidthRequest="190"/>
-                    <ImageButton Clicked="SignUpAction" Source="FacebookSignIn.png" WidthRequest="190"/>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="Center" Spacing="11" Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0, 10, 0, 25'}">
+                    <ImageButton Clicked="SignUpAction" Source="GoogleSignIn.png" WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=148'}"/>
+                    <ImageButton Clicked="SignUpAction" Source="FacebookSignIn.png" WidthRequest="{Binding Converter={StaticResource scale}, ConverterParameter='width=148'}"/>
                 </StackLayout>
             </StackLayout>
 

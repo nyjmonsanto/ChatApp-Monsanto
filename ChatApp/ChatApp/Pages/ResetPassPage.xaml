@@ -12,7 +12,7 @@
                     <Image Source="LogoIcon.png"/>
                 </Frame>
 
-                <Label Text="Reset Password" TextColor="DimGray" FontSize="18" Margin="0, 5, 0, 5"/>
+                <Label Text="Reset Password" TextColor="DimGray" FontSize="18" Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0, 5, 0, 5'}"/>
 
                 <Frame x:Name="Frame1" Style="{StaticResource FrameStyle}">
                     <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Input Email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
@@ -20,7 +20,7 @@
 
                 <Button Text="Send Email" Clicked="SendEmailAction" Style="{StaticResource ButtonStyle}"/>
 
-                <Label x:Name="lbl_Back" Text="Back" TextColor="DimGray" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="0, 5, 0, 50">
+                <Label x:Name="lbl_Back" Text="Back" TextColor="DimGray" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0, 5, 0, 50'}">
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="LoginPageNavigate"/>
                     </Label.GestureRecognizers>
