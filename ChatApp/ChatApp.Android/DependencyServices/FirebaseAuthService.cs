@@ -14,10 +14,11 @@ using Xamarin.Forms;
 using Firebase.Auth;
 using Plugin.CloudFirestore;
 
-using ChatApp.Model;
+using ChatApp.Models;
 using ChatApp.Helpers;
 using ChatApp.DependencyServices;
 using ChatApp.Droid.DependencyServices;
+using System.Collections.Generic;
 
 [assembly: Dependency(typeof(FirebaseAuthService))]
 namespace ChatApp.Droid.DependencyServices
@@ -36,9 +37,9 @@ namespace ChatApp.Droid.DependencyServices
                 {
                     var document = await CrossCloudFirestore.Current
                                         .Instance
-                                        .GetCollection("users")
-                                        .GetDocument(result.User.Uid)
-                                        .GetDocumentAsync();
+                                        .Collection("users")
+                                        .Document(result.User.Uid)
+                                        .GetAsync();
                     var yourModel = document.ToObject<UserModel>();
 
                     dataClass.loggedInUser = new UserModel()
@@ -46,6 +47,7 @@ namespace ChatApp.Droid.DependencyServices
                         uid = result.User.Uid,
                         email = result.User.Email,
                         name = yourModel.name,
+                        contacts = yourModel.contacts,
                         userType = yourModel.userType,
                         created_at = yourModel.created_at
                     };
@@ -81,11 +83,14 @@ namespace ChatApp.Droid.DependencyServices
                 int cnt = email.Length - ndx;
                 string defaultName = string.IsNullOrEmpty(name) ? email.Remove(ndx, cnt) : name;
 
+                List<string> contact = new List<string>();
+ 
                 dataClass.loggedInUser = new UserModel()
                 {
                     uid = FirebaseAuth.Instance.CurrentUser.Uid,
                     email = email,
                     name = defaultName,
+                    contacts = contact,
                     userType = 0,
                     created_at = DateTime.UtcNow
                 };
@@ -115,6 +120,7 @@ namespace ChatApp.Droid.DependencyServices
                         uid = FirebaseAuth.Instance.CurrentUser.Uid,
                         email = FirebaseAuth.Instance.CurrentUser.Email,
                         name = dataClass.loggedInUser.name,
+                        contacts = dataClass.loggedInUser.contacts,
                         userType = dataClass.loggedInUser.userType,
                         created_at = dataClass.loggedInUser.created_at
                     };

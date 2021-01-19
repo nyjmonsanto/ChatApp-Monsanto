@@ -19,7 +19,7 @@ namespace ChatApp
 
             if (dataClass.isSignedIn)
             {
-                MainPage = new Pages.MainPage();
+                MainPage = new NavigationPage(new Pages.MainPage());
             }
             else
             {

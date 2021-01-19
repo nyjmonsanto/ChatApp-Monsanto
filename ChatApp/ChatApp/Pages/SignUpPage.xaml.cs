@@ -1,8 +1,4 @@
-﻿using ChatApp.DependencyServices;
-using ChatApp.Helpers;
-using ChatApp.Model;
-using Plugin.CloudFirestore;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,6 +6,11 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using ChatApp.Models;
+using ChatApp.Helpers;
+using ChatApp.DependencyServices;
+using Plugin.CloudFirestore;
 
 namespace ChatApp.Pages
 {
@@ -21,6 +22,7 @@ namespace ChatApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         //Navigation 
@@ -72,6 +74,16 @@ namespace ChatApp.Pages
             }
         }
 
+        //For Google and Facebook Sign-in buttons
+        //Will only display an alert since the functionalities of the two buttons are optional
+        private async void ButtonAction(object sender, EventArgs e)
+        {
+            ToggleIndicator(true);
+            await Task.Delay(2500);
+            ToggleIndicator(false);
+            await DisplayAlert("", "Functionalities for these buttons have not yet been implemented.", "Okay");
+        }
+
         //Sign Up
         private async void SignUpAction(object sender, EventArgs e)
         {
@@ -106,7 +118,7 @@ namespace ChatApp.Pages
                     Frame4.BorderColor = Color.Red;
                 }
 
-                await DisplayAlert("Error", "Missing field/s.", "Okay");
+                await DisplayAlert("Error", "Missing fields.", "Okay");
             }
             else if (!Password.Text.Equals(ConfirmPassword.Text))
             {
@@ -127,9 +139,9 @@ namespace ChatApp.Pages
                     {
                         await CrossCloudFirestore.Current
                                                  .Instance
-                                                 .GetCollection("users")
-                                                 .GetDocument(dataClass.loggedInUser.uid)
-                                                 .SetDataAsync(dataClass.loggedInUser);
+                                                 .Collection("users")
+                                                 .Document(dataClass.loggedInUser.uid)
+                                                 .SetAsync(dataClass.loggedInUser);
                         await DisplayAlert("Success", res.Response, "Okay");
                         await Navigation.PopAsync();
                     }

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
-using ChatApp.Model;
+using ChatApp.Models;
 using ChatApp.DependencyServices;
 
 namespace ChatApp.Pages
@@ -18,7 +18,6 @@ namespace ChatApp.Pages
         public ResetPassPage()
         {
             InitializeComponent();
-            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         //Navigation 
@@ -50,6 +49,7 @@ namespace ChatApp.Pages
         {
             if (string.IsNullOrEmpty(Email.Text))
             {
+                Frame1.BorderColor = Color.Red;
                 await DisplayAlert("Error", "Missing field.", "Okay");
             }
             else

@@ -4,14 +4,14 @@ using System.Runtime.CompilerServices;
 
 using Xamarin.Forms;
 using Newtonsoft.Json;
-using ChatApp.Model;
+using ChatApp.Models;
 
 namespace ChatApp.Helpers
 {
     public class DataClass : INotifyPropertyChanged
     {
         static DataClass dataClass;
-        public static DataClass GetInstance 
+        public static DataClass GetInstance
         {
             get
             {
@@ -57,7 +57,7 @@ namespace ChatApp.Helpers
             }
             get
             {
-                if(_loggedInUser == null && Application.Current.Properties.ContainsKey("loggedInUser"))
+                if (_loggedInUser == null && Application.Current.Properties.ContainsKey("loggedInUser"))
                 {
                     _loggedInUser = JsonConvert.DeserializeObject<UserModel>(Application.Current.Properties["loggedInUser"].ToString());
                 }

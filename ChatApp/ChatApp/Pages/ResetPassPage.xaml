@@ -4,28 +4,16 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="ChatApp.Pages.ResetPassPage">
+             x:Class="ChatApp.Pages.ResetPassPage"
+             Title="ChatApp Reset Password">
     <ContentPage.Content>
         <Grid>
-            <StackLayout Padding="10">
-                <Frame HorizontalOptions="Fill" VerticalOptions="FillAndExpand">
-                    <Image Source="LogoIcon.png"/>
-                </Frame>
-
-                <Label Text="Reset Password" TextColor="DimGray" FontSize="18" Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0, 5, 0, 5'}"/>
-
+            <StackLayout Padding="10" VerticalOptions="Center">
                 <Frame x:Name="Frame1" Style="{StaticResource FrameStyle}">
-                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Input Email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
+                    <Entry x:Name="Email" Focused="ChangeColor" Placeholder="Email" Keyboard="Email" Style="{StaticResource EntryStyle}"/>
                 </Frame>
 
-                <Button Text="Send Email" Clicked="SendEmailAction" Style="{StaticResource ButtonStyle}"/>
-
-                <Label x:Name="lbl_Back" Text="Back" TextColor="DimGray" FontSize="18" HorizontalOptions="CenterAndExpand" Margin="{Binding Converter={StaticResource scale}, ConverterParameter='thickness=0, 5, 0, 50'}">
-                    <Label.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="LoginPageNavigate"/>
-                    </Label.GestureRecognizers>
-                </Label>
-
+                <Button Text="Send Reset Password Email" Clicked="SendEmailAction" Style="{StaticResource ButtonStyle}"/>
             </StackLayout>
 
             <StackLayout x:Name="bg" IsVisible="False" Style="{StaticResource LoadingBGStyle}">

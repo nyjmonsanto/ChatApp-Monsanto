@@ -1,6 +1,4 @@
-﻿using ChatApp.DependencyServices;
-using ChatApp.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +6,10 @@ using System.Threading.Tasks;
 
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+
+using ChatApp.Models;
+using ChatApp.DependencyServices;
+
 
 namespace ChatApp.Pages
 {
@@ -18,6 +20,7 @@ namespace ChatApp.Pages
         {
             InitializeComponent();
             NavigationPage.SetHasBackButton(this, false);
+            NavigationPage.SetHasNavigationBar(this, false);
         }
 
         //Navigation 
@@ -61,6 +64,16 @@ namespace ChatApp.Pages
             }
         }
 
+        //For Google and Facebook Sign-in buttons
+        //Will only display an alert since the functionalities of the two buttons are optional
+        private async void ButtonAction(object sender, EventArgs e)
+        {
+            ToggleIndicator(true);
+            await Task.Delay(2500);
+            ToggleIndicator(false);
+            await DisplayAlert("", "Functionalities for these buttons have not yet been implemented.", "Okay");
+        }
+
         //Sign In
         private async void SignInAction(object sender, EventArgs e)
         {
@@ -73,7 +86,7 @@ namespace ChatApp.Pages
 
         public async void SignInProcess(object sender, EventArgs e)
         {
-            if(string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text))
+            if (string.IsNullOrEmpty(Email.Text) || string.IsNullOrEmpty(Password.Text))
             {
                 if (string.IsNullOrEmpty(Email.Text))
                 {
@@ -85,13 +98,9 @@ namespace ChatApp.Pages
                     Frame2.BorderColor = Color.Red;
                 }
 
-                bool retryBool = await DisplayAlert("Error", "Missing field/s. Retry?", "Yes", "No");
-                if (retryBool)
-                {
-                    Email.Text = string.Empty;
-                    Password.Text = string.Empty;
-                    Email.Focus();
-                }
+                await DisplayAlert("Error", "Missing fields.", "Okay");
+                Email.Text = string.Empty;
+                Password.Text = string.Empty;
             }
             else
             {
@@ -100,9 +109,9 @@ namespace ChatApp.Pages
                 FirebaseAuthResponseModel res = new FirebaseAuthResponseModel() { };
                 res = await DependencyService.Get<iFirebaseAuth>().LoginWithEmailPassword(Email.Text, Password.Text);
 
-                if(res.Status == true)
+                if (res.Status == true)
                 {
-                    Application.Current.MainPage = new MainPage();
+                    Application.Current.MainPage = new NavigationPage(new MainPage());
                 }
                 else
                 {

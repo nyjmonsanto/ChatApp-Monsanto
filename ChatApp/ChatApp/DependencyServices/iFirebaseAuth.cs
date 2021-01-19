@@ -1,4 +1,4 @@
-﻿using ChatApp.Model;
+﻿using ChatApp.Models;
 using System.Threading.Tasks;
 
 namespace ChatApp.DependencyServices
